@@ -1141,14 +1141,14 @@ button {
 /* تصغير الصورة وتحريكها ناحية الشمال */
 .hero-photo-wrapper {
     justify-self: start;
-    width: min(100%, 490px);
+    width: min(100%, 500px);
     margin-left: 70px;
 }
 
 /* تقليل طول الصورة */
 .hero-photo img {
     width: 100%;
-    height: 540px;
+    height: 520px;
     aspect-ratio: auto;
     object-fit: cover;
     object-position: center top;
@@ -1402,4 +1402,200 @@ button {
         transform: translate(-50%, -50%) scale(1.15);
     }
 
+}
+/* HI I'M */
+
+.hero-hello {
+    margin: 0 0 10px;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+
+    color: #4f7cff;
+
+    letter-spacing: 0.02em;
+}
+.skill-progress {
+    width: 100%;
+    height: 8px;
+    background: #252a32;
+    border-radius: 100px;
+    overflow: hidden;
+}
+
+.skill-progress-value {
+    width: 0;
+    height: 100%;
+    background: #4f7cff;
+    border-radius: 100px;
+    transition: width 1.2s ease;
+}
+
+/* FIX PAGE SHIFT WHEN MOBILE MENU OPENS */
+
+html {
+    scrollbar-gutter: stable;
+}
+
+@media (max-width: 880px) {
+
+    .menu-button {
+        position: fixed !important;
+        top: 22px !important;
+        right: 20px !important;
+
+        width: 44px !important;
+        height: 44px !important;
+
+        margin: 0 !important;
+
+        transform: none !important;
+        translate: none !important;
+
+        z-index: 9999 !important;
+    }
+}
+/* =========================================
+   STABLE HERO GLOW - NO PAGE SHAKE
+========================================= */
+
+.hero-photo-wrapper::before {
+    background: rgba(79, 124, 255, 0.75) !important;
+    filter: blur(58px) !important;
+
+    transform: translate(-50%, -50%) !important;
+
+    animation: stableGlow 1.2s ease-in-out infinite alternate !important;
+
+    will-change: opacity;
+}
+
+.hero-photo-wrapper::after {
+    background: radial-gradient(
+        circle,
+        rgba(79, 124, 255, 0.70) 0%,
+        rgba(79, 124, 255, 0.32) 42%,
+        transparent 72%
+    ) !important;
+
+    filter: blur(28px) !important;
+
+    transform: translate(-50%, -50%) !important;
+
+    animation: stableGlow 1.2s ease-in-out infinite alternate !important;
+
+    will-change: opacity;
+}
+
+.hero-photo {
+    animation: none !important;
+}
+
+@keyframes stableGlow {
+    0% {
+        opacity: 0.30;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+/* =========================================
+   ULTRA STRONG HERO GLOW
+========================================= */
+
+/* Desktop + Laptop */
+.hero-photo-wrapper::before {
+    width: 125% !important;
+    height: 125% !important;
+
+    background: rgba(79, 124, 255, 1) !important;
+
+    filter: blur(72px) !important;
+
+    opacity: 0.45;
+
+    animation: ultraGlowDesktop 1s ease-in-out infinite alternate !important;
+}
+
+.hero-photo-wrapper::after {
+    width: 145% !important;
+    height: 145% !important;
+
+    background: radial-gradient(
+        circle,
+        rgba(79, 124, 255, 1) 0%,
+        rgba(79, 124, 255, 0.75) 25%,
+        rgba(79, 124, 255, 0.35) 50%,
+        transparent 75%
+    ) !important;
+
+    filter: blur(45px) !important;
+
+    opacity: 0.55;
+
+    animation: ultraGlowDesktop 1s ease-in-out infinite alternate !important;
+}
+
+@keyframes ultraGlowDesktop {
+    0% {
+        opacity: 0.25;
+        transform: translate(-50%, -50%) scale(0.92);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.18);
+    }
+}
+
+
+/* =========================================
+   MOBILE - STRONG WITHOUT SHAKE
+========================================= */
+
+@media (max-width: 880px) {
+
+    .hero-photo-wrapper::before {
+        width: 135% !important;
+        height: 135% !important;
+
+        background: rgba(79, 124, 255, 1) !important;
+
+        filter: blur(75px) !important;
+
+        transform: translate(-50%, -50%) !important;
+
+        animation: ultraGlowMobile 0.8s ease-in-out infinite alternate !important;
+    }
+
+    .hero-photo-wrapper::after {
+        width: 155% !important;
+        height: 155% !important;
+
+        background: radial-gradient(
+            circle,
+            rgba(79, 124, 255, 1) 0%,
+            rgba(79, 124, 255, 0.8) 28%,
+            rgba(79, 124, 255, 0.4) 52%,
+            transparent 78%
+        ) !important;
+
+        filter: blur(48px) !important;
+
+        transform: translate(-50%, -50%) !important;
+
+        animation: ultraGlowMobile 0.8s ease-in-out infinite alternate !important;
+    }
+
+    @keyframes ultraGlowMobile {
+        0% {
+            opacity: 0.15;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
 }

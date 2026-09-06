@@ -473,3 +473,14 @@ function typeRole() {
 }
 
 setTimeout(typeRole, 500);
+/* Skill Progress Bars */
+
+const skillBars = document.querySelectorAll(".skill-progress-value");
+
+skillBars.forEach((bar) => {
+    const progress = bar.getAttribute("data-progress");
+
+    setTimeout(() => {
+        bar.style.width = progress + "%";
+    }, 300);
+});
