@@ -1599,3 +1599,659 @@ html {
         }
     }
 }
+/* =========================================================
+   FINAL MOBILE RESPONSIVE
+   KEEP THIS AT THE VERY END OF STYLE.CSS
+========================================================= */
+
+@media (max-width: 768px) {
+
+    /* =========================
+       GLOBAL
+    ========================= */
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden !important;
+    }
+
+    .container {
+        width: calc(100% - 32px) !important;
+        max-width: 100% !important;
+        margin-inline: auto !important;
+    }
+
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .header {
+        width: 100%;
+    }
+
+    .nav {
+        min-height: 72px !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+
+        gap: 16px !important;
+    }
+
+    .brand.brand-logo {
+        position: relative !important;
+
+        margin: 0 !important;
+
+        font-size: 32px !important;
+
+        z-index: 1002;
+    }
+
+    .menu-button {
+        position: relative !important;
+
+        top: auto !important;
+        right: auto !important;
+        left: auto !important;
+
+        width: 42px !important;
+        height: 42px !important;
+
+        flex-shrink: 0 !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        transform: none !important;
+        translate: none !important;
+
+        z-index: 1002;
+    }
+
+
+    /* =========================
+       MOBILE MENU
+    ========================= */
+
+    .nav-content {
+        position: fixed !important;
+
+        top: 72px !important;
+        left: 0 !important;
+        right: 0 !important;
+
+        width: 100% !important;
+
+        padding: 20px 16px 24px !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+
+        gap: 18px !important;
+
+        background: rgba(13, 15, 18, 0.98);
+
+        border-bottom: 1px solid var(--border);
+
+        opacity: 0;
+        visibility: hidden;
+
+        transform: translateY(-10px) !important;
+
+        transition:
+            opacity 0.25s ease,
+            transform 0.25s ease,
+            visibility 0.25s ease;
+    }
+
+    .nav-content.open {
+        opacity: 1;
+        visibility: visible;
+
+        transform: translateY(0) !important;
+    }
+
+    .nav-links {
+        position: static !important;
+
+        width: 100% !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+
+        align-items: stretch !important;
+
+        gap: 0 !important;
+
+        transform: none !important;
+    }
+
+    .nav-link {
+        width: 100% !important;
+
+        padding: 13px 4px !important;
+
+        font-size: 16px !important;
+        font-weight: 700 !important;
+    }
+
+    .nav-link::after {
+        display: none !important;
+    }
+
+    .resume-button {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+        width: 100% !important;
+
+        min-height: auto !important;
+
+        padding: 105px 0 60px !important;
+
+        display: block !important;
+
+        overflow: hidden !important;
+    }
+
+    .hero .container {
+        width: calc(100% - 32px) !important;
+
+        margin-inline: auto !important;
+    }
+
+    .hero-grid {
+        width: 100% !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+
+        grid-template-columns: none !important;
+
+        gap: 42px !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+
+    /* =========================
+       HERO TEXT
+    ========================= */
+
+    .hero-copy {
+        width: 100% !important;
+        max-width: 100% !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        text-align: left !important;
+    }
+
+    .hero-hello {
+        margin: 0 0 7px 0 !important;
+
+        font-size: 19px !important;
+        font-weight: 700 !important;
+
+        line-height: 1.2 !important;
+    }
+
+
+    /* Name */
+
+    .hero h1 {
+        width: 100% !important;
+
+        margin: 0 !important;
+
+        font-size: clamp(48px, 13.5vw, 62px) !important;
+
+        line-height: 0.96 !important;
+
+        letter-spacing: -0.05em !important;
+
+        word-break: normal !important;
+        overflow-wrap: normal !important;
+    }
+
+    .hero h1 span {
+        display: block !important;
+    }
+
+
+    /* Data Analyst */
+
+    .hero-role {
+        width: 100% !important;
+
+        min-height: 38px !important;
+
+        margin-top: 17px !important;
+
+        font-size: clamp(27px, 8vw, 34px) !important;
+
+        line-height: 1.1 !important;
+    }
+
+
+    /* Description */
+
+    .hero-description {
+        width: 100% !important;
+        max-width: 100% !important;
+
+        margin-top: 15px !important;
+
+        font-size: 14px !important;
+
+        line-height: 1.65 !important;
+    }
+
+
+    /* =========================
+       HERO BUTTONS
+    ========================= */
+
+    .hero-actions {
+        width: 100% !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+
+        align-items: stretch !important;
+
+        gap: 10px !important;
+
+        margin-top: 23px !important;
+    }
+
+    .hero-actions .button {
+        width: 100% !important;
+
+        min-height: 50px !important;
+    }
+
+
+    /* =========================
+       SOCIAL ICONS
+    ========================= */
+
+    .social-links {
+        width: 100% !important;
+
+        display: flex !important;
+
+        justify-content: flex-start !important;
+        align-items: center !important;
+
+        gap: 10px !important;
+
+        margin-top: 19px !important;
+    }
+
+    .social-links a {
+        width: 42px !important;
+        height: 42px !important;
+
+        flex: 0 0 42px !important;
+
+        max-width: none !important;
+    }
+
+
+    /* =========================
+       HERO PHOTO
+    ========================= */
+
+    .hero-photo-wrapper {
+        position: relative !important;
+
+        width: min(100%, 330px) !important;
+        max-width: 330px !important;
+
+        align-self: center !important;
+        justify-self: center !important;
+
+        margin: 0 auto !important;
+
+        transform: none !important;
+    }
+
+    .hero-photo {
+        position: relative !important;
+
+        width: 100% !important;
+
+        margin: 0 !important;
+
+        padding: 5px !important;
+
+        border-radius: 22px !important;
+
+        transform: none !important;
+
+        z-index: 2;
+    }
+
+    .hero-photo img {
+        display: block !important;
+
+        width: 100% !important;
+        height: auto !important;
+
+        aspect-ratio: 4 / 5 !important;
+
+        object-fit: cover !important;
+        object-position: center top !important;
+
+        border-radius: 18px !important;
+    }
+
+
+    /* =========================
+       DASHBOARD BEHIND PHOTO
+    ========================= */
+
+    .dashboard-bg {
+        position: absolute !important;
+
+        width: 96% !important;
+        height: 84% !important;
+
+        top: 50% !important;
+        left: 50% !important;
+
+        margin: 0 !important;
+
+        transform: translate(-50%, -50%) !important;
+
+        opacity: 0.24 !important;
+
+        overflow: hidden !important;
+
+        pointer-events: none !important;
+
+        z-index: 0 !important;
+    }
+
+
+    /* =========================
+       MOBILE GLOW
+       NO SCALE = NO MENU SHAKE
+    ========================= */
+
+    .hero-photo-wrapper::before {
+        width: 100% !important;
+        height: 100% !important;
+
+        top: 50% !important;
+        left: 50% !important;
+
+        transform: translate(-50%, -50%) !important;
+
+        background: rgba(79, 124, 255, 0.9) !important;
+
+        filter: blur(55px) !important;
+
+        animation: mobileStableGlow 0.9s ease-in-out infinite alternate !important;
+
+        pointer-events: none !important;
+    }
+
+    .hero-photo-wrapper::after {
+        width: 100% !important;
+        height: 100% !important;
+
+        top: 50% !important;
+        left: 50% !important;
+
+        transform: translate(-50%, -50%) !important;
+
+        background: radial-gradient(
+            circle,
+            rgba(79, 124, 255, 0.85) 0%,
+            rgba(79, 124, 255, 0.4) 45%,
+            transparent 75%
+        ) !important;
+
+        filter: blur(30px) !important;
+
+        animation: mobileStableGlow 0.9s ease-in-out infinite alternate !important;
+
+        pointer-events: none !important;
+    }
+
+    .hero-photo {
+        animation: none !important;
+    }
+
+
+    /* =========================
+       SECTIONS
+    ========================= */
+
+    .section {
+        padding: 70px 0 !important;
+    }
+
+    .section-header {
+        width: 100% !important;
+
+        display: block !important;
+
+        margin-bottom: 30px !important;
+    }
+
+    .section-header h2 {
+        font-size: 35px !important;
+
+        line-height: 1.05 !important;
+    }
+
+    .section-header p {
+        width: 100% !important;
+        max-width: 100% !important;
+
+        margin-top: 10px !important;
+
+        font-size: 13px !important;
+    }
+
+
+    /* =========================
+       SKILLS
+    ========================= */
+
+    .skills-grid {
+        grid-template-columns: 1fr !important;
+
+        gap: 12px !important;
+    }
+
+    .skill-card {
+        width: 100% !important;
+
+        padding: 16px !important;
+
+        gap: 14px !important;
+    }
+
+    .skill-icon {
+        width: 46px !important;
+        height: 46px !important;
+    }
+
+
+    /* =========================
+       SERVICES
+    ========================= */
+
+    .services-grid {
+        grid-template-columns: 1fr !important;
+
+        gap: 14px !important;
+    }
+
+    .service-card {
+        width: 100% !important;
+
+        min-height: auto !important;
+
+        padding: 21px !important;
+    }
+
+    .service-card h3 {
+        margin-top: 32px !important;
+    }
+
+
+    /* =========================
+       PROJECTS
+    ========================= */
+
+    .projects-list {
+        grid-template-columns: 1fr !important;
+
+        gap: 18px !important;
+    }
+
+    .project-card {
+        width: 100% !important;
+    }
+
+    .project-image {
+        width: 100% !important;
+
+        padding: 8px !important;
+    }
+
+    .project-image img {
+        width: 100% !important;
+        height: auto !important;
+
+        max-height: none !important;
+
+        object-fit: contain !important;
+    }
+
+    .project-info {
+        width: 100% !important;
+
+        padding: 18px !important;
+
+        gap: 14px !important;
+    }
+
+    .project-info > div {
+        max-width: none !important;
+    }
+
+    .project-info h3 {
+        font-size: 17px !important;
+    }
+
+    .project-info p {
+        font-size: 12.5px !important;
+
+        line-height: 1.65 !important;
+    }
+
+
+    /* =========================
+       CONTACT
+    ========================= */
+
+    .contact-card {
+        width: 100% !important;
+
+        grid-template-columns: 1fr !important;
+
+        gap: 30px !important;
+
+        padding: 25px 18px !important;
+    }
+
+    .contact-intro h3 {
+        font-size: 30px !important;
+    }
+
+    .contact-link {
+        width: 100% !important;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    .footer-content {
+        min-height: 105px !important;
+
+        flex-direction: column !important;
+
+        justify-content: center !important;
+
+        gap: 8px !important;
+
+        text-align: center !important;
+    }
+}
+
+
+/* =========================================================
+   MOBILE GLOW ANIMATION
+========================================================= */
+
+@keyframes mobileStableGlow {
+
+    0% {
+        opacity: 0.25;
+    }
+
+    100% {
+        opacity: 0.9;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .container,
+    .hero .container {
+        width: calc(100% - 24px) !important;
+    }
+
+    .hero h1 {
+        font-size: 46px !important;
+    }
+
+    .hero-role {
+        font-size: 27px !important;
+    }
+
+    .hero-photo-wrapper {
+        width: 92% !important;
+    }
+}
