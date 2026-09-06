@@ -2255,3 +2255,253 @@ html {
         width: 92% !important;
     }
 }
+/* =========================================================
+   SERVICES - FINAL DESIGN
+========================================================= */
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.service-card {
+    position: relative;
+    min-height: 185px;
+    padding: 26px;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.035),
+            rgba(255,255,255,.015)
+        );
+
+    overflow: hidden;
+
+    transition:
+        transform .3s ease,
+        border-color .3s ease,
+        background .3s ease,
+        box-shadow .3s ease;
+}
+
+.service-card::before {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    top: 25px;
+
+    width: 3px;
+    height: 46px;
+
+    border-radius: 0 10px 10px 0;
+
+    background: #4f7cff;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(79,124,255,.35);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(79,124,255,.07),
+            rgba(255,255,255,.02)
+        );
+
+    box-shadow:
+        0 22px 50px rgba(0,0,0,.25);
+}
+
+
+/* =========================
+   ICON + TITLE
+========================= */
+
+.service-head {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 18px;
+}
+
+.service-icon {
+    width: 48px;
+    height: 48px;
+
+    flex: 0 0 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: rgba(79,124,255,.10);
+
+    border: 1px solid rgba(79,124,255,.20);
+
+    color: #4f7cff;
+
+    font-size: 21px;
+
+    transition:
+        transform .3s ease,
+        background .3s ease;
+}
+
+.service-card:hover .service-icon {
+    transform: scale(1.08);
+
+    background: rgba(79,124,255,.17);
+}
+
+.service-card h3 {
+    margin: 0 !important;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 21px;
+
+    font-weight: 700;
+
+    line-height: 1.25;
+
+    color: var(--text);
+}
+
+.service-card p {
+    margin: 0;
+
+    max-width: 95%;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   SKILLS - EXPANDED GRID
+========================================================= */
+
+.skills-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1024px) {
+
+    .skills-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .skills-grid,
+    .services-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .services-grid {
+        gap: 14px !important;
+    }
+
+
+    /* Services */
+
+    .service-card {
+        min-height: auto !important;
+
+        padding: 20px !important;
+    }
+
+    .service-head {
+        gap: 12px;
+
+        margin-bottom: 14px;
+    }
+
+    .service-icon {
+        width: 44px;
+        height: 44px;
+
+        flex: 0 0 44px;
+
+        font-size: 19px;
+    }
+
+    .service-card h3 {
+        margin: 0 !important;
+
+        font-size: 18px !important;
+    }
+
+    .service-card p {
+        max-width: 100%;
+
+        font-size: 13px !important;
+
+        line-height: 1.65;
+    }
+
+
+    /* Skills */
+
+    .skill-card {
+        width: 100% !important;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .service-card {
+        padding: 18px !important;
+    }
+
+    .service-icon {
+        width: 42px;
+        height: 42px;
+
+        flex: 0 0 42px;
+    }
+
+    .service-card h3 {
+        font-size: 17px !important;
+    }
+
+}
