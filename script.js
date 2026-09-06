@@ -1,68 +1,475 @@
-// Animate skill bars
-const bars = document.querySelectorAll(".progress");
+/* =========================================================
+   SELECTORS
+========================================================= */
 
-function animateSkills() {
-    bars.forEach(bar => {
-        const width = bar.getAttribute("data-width");
-        const rect = bar.getBoundingClientRect();
+const menuButton =
+    document.getElementById("menuButton");
 
-        if (rect.top < window.innerHeight - 50) {
-            bar.style.width = width;
-        }
-    });
+const navContent =
+    document.getElementById("navContent");
+
+const navLinks =
+    document.querySelectorAll(".nav-link");
+
+const sections =
+    document.querySelectorAll("main section[id]");
+
+const revealElements =
+    document.querySelectorAll(".reveal");
+
+const progressBars =
+    document.querySelectorAll(".skill-progress-value");
+
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+function openMenu() {
+
+    if (!menuButton || !navContent) {
+        return;
+    }
+
+
+    navContent.classList.add("open");
+
+    document.body.classList.add("menu-open");
+
+
+    menuButton.innerHTML =
+        '<i class="fa-solid fa-xmark"></i>';
+
 }
 
-window.addEventListener("scroll", animateSkills);
-window.addEventListener("load", animateSkills);
+
+function closeMenu() {
+
+    if (!menuButton || !navContent) {
+        return;
+    }
 
 
-// ===== Typing Effect =====
-const typingSpan = document.querySelector(".typing");
+    navContent.classList.remove("open");
 
-const text = "Data Analyst";
-let index = 0;
+    document.body.classList.remove("menu-open");
+
+
+    menuButton.innerHTML =
+        '<i class="fa-solid fa-bars"></i>';
+
+}
+
+
+if (menuButton && navContent) {
+
+    menuButton.addEventListener(
+        "click",
+        () => {
+
+            const isOpen =
+                navContent.classList.contains("open");
+
+
+            if (isOpen) {
+
+                closeMenu();
+
+            } else {
+
+                openMenu();
+
+            }
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   CLOSE NAV AFTER CLICK
+========================================================= */
+
+navLinks.forEach(link => {
+
+    link.addEventListener(
+        "click",
+        () => {
+
+            if (
+                window.innerWidth <= 880
+            ) {
+
+                closeMenu();
+
+            }
+
+        }
+    );
+
+});
+
+
+
+/* =========================================================
+   RESET NAV ON RESIZE
+========================================================= */
+
+window.addEventListener(
+    "resize",
+    () => {
+
+        if (
+            window.innerWidth > 880
+        ) {
+
+            closeMenu();
+
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   REVEAL ELEMENTS
+========================================================= */
+
+const revealObserver =
+    new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(
+                entry => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target
+                            .classList
+                            .add("visible");
+
+
+                        revealObserver
+                            .unobserve(
+                                entry.target
+                            );
+
+                    }
+
+                }
+            );
+
+        },
+
+        {
+
+            threshold: 0.1,
+
+            rootMargin:
+                "0px 0px -40px 0px"
+
+        }
+
+    );
+
+
+revealElements.forEach(
+    element => {
+
+        revealObserver.observe(
+            element
+        );
+
+    }
+);
+
+
+
+/* =========================================================
+   SKILLS ANIMATION
+========================================================= */
+
+const skillsObserver =
+    new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(
+                entry => {
+
+                    if (
+                        !entry.isIntersecting
+                    ) {
+                        return;
+                    }
+
+
+                    const bar =
+                        entry.target;
+
+
+                    const targetWidth =
+                        bar.getAttribute(
+                            "data-width"
+                        );
+
+
+                    bar.style.width =
+                        targetWidth;
+
+
+                    skillsObserver
+                        .unobserve(bar);
+
+                }
+            );
+
+        },
+
+        {
+
+            threshold: 0.35
+
+        }
+
+    );
+
+
+progressBars.forEach(
+    bar => {
+
+        skillsObserver.observe(
+            bar
+        );
+
+    }
+);
+
+
+
+/* =========================================================
+   ACTIVE NAV LINK
+========================================================= */
+
+function updateActiveNavigation() {
+
+    const currentPosition =
+        window.scrollY + 160;
+
+
+    let activeSection = "";
+
+
+    sections.forEach(
+        section => {
+
+            const top =
+                section.offsetTop;
+
+
+            const bottom =
+                top +
+                section.offsetHeight;
+
+
+            if (
+                currentPosition >= top &&
+                currentPosition < bottom
+            ) {
+
+                activeSection =
+                    section.id;
+
+            }
+
+        }
+    );
+
+
+    navLinks.forEach(
+        link => {
+
+            link.classList.remove(
+                "active"
+            );
+
+
+            if (
+                link.getAttribute("href") ===
+                `#${activeSection}`
+            ) {
+
+                link.classList.add(
+                    "active"
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+window.addEventListener(
+    "scroll",
+    updateActiveNavigation,
+    {
+        passive: true
+    }
+);
+
+
+
+/* =========================================================
+   SMOOTH SCROLL
+========================================================= */
+
+document
+    .querySelectorAll(
+        'a[href^="#"]'
+    )
+    .forEach(
+        link => {
+
+            link.addEventListener(
+                "click",
+                event => {
+
+                    const id =
+                        link.getAttribute(
+                            "href"
+                        );
+
+
+                    if (
+                        !id ||
+                        id === "#"
+                    ) {
+                        return;
+                    }
+
+
+                    const target =
+                        document.querySelector(
+                            id
+                        );
+
+
+                    if (!target) {
+                        return;
+                    }
+
+
+                    event.preventDefault();
+
+
+                    const header =
+                        document.querySelector(
+                            ".header"
+                        );
+
+
+                    const headerHeight =
+                        header
+                            ? header.offsetHeight
+                            : 0;
+
+
+                    const targetPosition =
+                        target
+                            .getBoundingClientRect()
+                            .top +
+                        window.scrollY -
+                        headerHeight;
+
+
+                    window.scrollTo({
+
+                        top:
+                            targetPosition,
+
+                        behavior:
+                            "smooth"
+
+                    });
+
+                }
+            );
+
+        }
+    );
+
+
+
+/* =========================================================
+   INITIAL
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        updateActiveNavigation();
+
+    }
+);
+/* =========================================
+   DATA ANALYST TYPEWRITER
+========================================= */
+
+const typingRole = document.getElementById("typingRole");
+
+const roleText = "Data Analyst";
+
+let roleIndex = 0;
 let isDeleting = false;
 
-const typingSpeed = 150;
-const deletingSpeed = 80;
-const waitAfterFinish = 1000;
-const waitAfterDelete = 500;
+function typeRole() {
 
-function typeLoop() {
-    if (!typingSpan) return;
+    if (!typingRole) return;
 
     if (!isDeleting) {
-        typingSpan.textContent = text.substring(0, index + 1);
-        index++;
 
-        if (index === text.length) {
+        typingRole.textContent = roleText.substring(0, roleIndex + 1);
+
+        roleIndex++;
+
+        if (roleIndex === roleText.length) {
+
             isDeleting = true;
-            setTimeout(typeLoop, waitAfterFinish);
+
+            setTimeout(typeRole, 1600);
+
             return;
         }
 
-        setTimeout(typeLoop, typingSpeed);
+        setTimeout(typeRole, 110);
+
     } else {
-        typingSpan.textContent = text.substring(0, index - 1);
-        index--;
 
-        if (index === 0) {
+        typingRole.textContent = roleText.substring(0, roleIndex - 1);
+
+        roleIndex--;
+
+        if (roleIndex === 0) {
+
             isDeleting = false;
-            setTimeout(typeLoop, waitAfterDelete);
+
+            setTimeout(typeRole, 500);
+
             return;
         }
 
-        setTimeout(typeLoop, deletingSpeed);
+        setTimeout(typeRole, 65);
     }
 }
 
-window.addEventListener("DOMContentLoaded", typeLoop);
-
-const menuToggle = document.getElementById("menuToggle");
-const navMenu = document.getElementById("navMenu");
-
-if (menuToggle && navMenu) {
-    menuToggle.addEventListener("click", () => {
-        navMenu.classList.toggle("show");
-    });
-}
+setTimeout(typeRole, 500);
