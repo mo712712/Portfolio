@@ -21,7 +21,6 @@ const progressBars =
     document.querySelectorAll(".skill-progress-value");
 
 
-
 /* =========================================================
    MOBILE MENU
 ========================================================= */
@@ -32,15 +31,12 @@ function openMenu() {
         return;
     }
 
-
     navContent.classList.add("open");
 
     document.body.classList.add("menu-open");
 
-
     menuButton.innerHTML =
         '<i class="fa-solid fa-xmark"></i>';
-
 }
 
 
@@ -50,15 +46,12 @@ function closeMenu() {
         return;
     }
 
-
     navContent.classList.remove("open");
 
     document.body.classList.remove("menu-open");
 
-
     menuButton.innerHTML =
         '<i class="fa-solid fa-bars"></i>';
-
 }
 
 
@@ -71,7 +64,6 @@ if (menuButton && navContent) {
             const isOpen =
                 navContent.classList.contains("open");
 
-
             if (isOpen) {
 
                 closeMenu();
@@ -81,12 +73,9 @@ if (menuButton && navContent) {
                 openMenu();
 
             }
-
         }
     );
-
 }
-
 
 
 /* =========================================================
@@ -99,19 +88,14 @@ navLinks.forEach(link => {
         "click",
         () => {
 
-            if (
-                window.innerWidth <= 880
-            ) {
+            if (window.innerWidth <= 880) {
 
                 closeMenu();
 
             }
-
         }
     );
-
 });
-
 
 
 /* =========================================================
@@ -122,17 +106,13 @@ window.addEventListener(
     "resize",
     () => {
 
-        if (
-            window.innerWidth > 880
-        ) {
+        if (window.innerWidth > 880) {
 
             closeMenu();
 
         }
-
     }
 );
-
 
 
 /* =========================================================
@@ -147,36 +127,27 @@ const revealObserver =
             entries.forEach(
                 entry => {
 
-                    if (
-                        entry.isIntersecting
-                    ) {
+                    if (entry.isIntersecting) {
 
                         entry.target
                             .classList
                             .add("visible");
 
-
                         revealObserver
                             .unobserve(
                                 entry.target
                             );
-
                     }
-
                 }
             );
-
         },
 
         {
-
             threshold: 0.1,
 
             rootMargin:
                 "0px 0px -40px 0px"
-
         }
-
     );
 
 
@@ -186,72 +157,65 @@ revealElements.forEach(
         revealObserver.observe(
             element
         );
-
     }
 );
 
 
-
 /* =========================================================
-   SKILLS ANIMATION
+   SKILLS PROGRESS - RUN ONCE
 ========================================================= */
 
 const skillsObserver =
     new IntersectionObserver(
 
-        entries => {
+        (entries, observer) => {
 
             entries.forEach(
                 entry => {
 
-                    if (
-                        !entry.isIntersecting
-                    ) {
+                    if (!entry.isIntersecting) {
                         return;
                     }
-
 
                     const bar =
                         entry.target;
 
-
-                    const targetWidth =
+                    const progress =
                         bar.getAttribute(
-                            "data-width"
+                            "data-progress"
                         );
 
+                    if (!progress) {
+                        return;
+                    }
 
+                    /* Set final percentage */
                     bar.style.width =
-                        targetWidth;
+                        progress + "%";
 
-
-                    skillsObserver
-                        .unobserve(bar);
-
+                    /* Stop observing after first animation */
+                    observer.unobserve(bar);
                 }
             );
-
         },
 
         {
-
-            threshold: 0.35
-
+            threshold: 0.25
         }
-
     );
 
 
 progressBars.forEach(
     bar => {
 
+        /* Start from zero */
+        bar.style.width = "0%";
+
         skillsObserver.observe(
             bar
         );
-
     }
 );
-
 
 
 /* =========================================================
@@ -263,9 +227,7 @@ function updateActiveNavigation() {
     const currentPosition =
         window.scrollY + 160;
 
-
     let activeSection = "";
-
 
     sections.forEach(
         section => {
@@ -273,11 +235,9 @@ function updateActiveNavigation() {
             const top =
                 section.offsetTop;
 
-
             const bottom =
                 top +
                 section.offsetHeight;
-
 
             if (
                 currentPosition >= top &&
@@ -286,9 +246,7 @@ function updateActiveNavigation() {
 
                 activeSection =
                     section.id;
-
             }
-
         }
     );
 
@@ -300,7 +258,6 @@ function updateActiveNavigation() {
                 "active"
             );
 
-
             if (
                 link.getAttribute("href") ===
                 `#${activeSection}`
@@ -309,12 +266,9 @@ function updateActiveNavigation() {
                 link.classList.add(
                     "active"
                 );
-
             }
-
         }
     );
-
 }
 
 
@@ -325,7 +279,6 @@ window.addEventListener(
         passive: true
     }
 );
-
 
 
 /* =========================================================
@@ -348,7 +301,6 @@ document
                             "href"
                         );
 
-
                     if (
                         !id ||
                         id === "#"
@@ -356,32 +308,26 @@ document
                         return;
                     }
 
-
                     const target =
                         document.querySelector(
                             id
                         );
 
-
                     if (!target) {
                         return;
                     }
 
-
                     event.preventDefault();
-
 
                     const header =
                         document.querySelector(
                             ".header"
                         );
 
-
                     const headerHeight =
                         header
                             ? header.offsetHeight
                             : 0;
-
 
                     const targetPosition =
                         target
@@ -390,7 +336,6 @@ document
                         window.scrollY -
                         headerHeight;
 
-
                     window.scrollTo({
 
                         top:
@@ -398,15 +343,11 @@ document
 
                         behavior:
                             "smooth"
-
                     });
-
                 }
             );
-
         }
     );
-
 
 
 /* =========================================================
@@ -421,41 +362,66 @@ document.addEventListener(
 
     }
 );
-/* =========================================
+
+
+/* =========================================================
    DATA ANALYST TYPEWRITER
-========================================= */
+========================================================= */
 
-const typingRole = document.getElementById("typingRole");
+const typingRole =
+    document.getElementById("typingRole");
 
-const roleText = "Data Analyst";
+const roleText =
+    "Data Analyst";
 
 let roleIndex = 0;
+
 let isDeleting = false;
+
 
 function typeRole() {
 
-    if (!typingRole) return;
+    if (!typingRole) {
+        return;
+    }
 
     if (!isDeleting) {
 
-        typingRole.textContent = roleText.substring(0, roleIndex + 1);
+        typingRole.textContent =
+            roleText.substring(
+                0,
+                roleIndex + 1
+            );
 
         roleIndex++;
 
-        if (roleIndex === roleText.length) {
+        if (
+            roleIndex ===
+            roleText.length
+        ) {
 
             isDeleting = true;
 
-            setTimeout(typeRole, 1600);
+            setTimeout(
+                typeRole,
+                1600
+            );
 
             return;
         }
 
-        setTimeout(typeRole, 110);
+        setTimeout(
+            typeRole,
+            110
+        );
 
     } else {
 
-        typingRole.textContent = roleText.substring(0, roleIndex - 1);
+        typingRole.textContent =
+            roleText.substring(
+                0,
+                roleIndex - 1
+            );
 
         roleIndex--;
 
@@ -463,24 +429,23 @@ function typeRole() {
 
             isDeleting = false;
 
-            setTimeout(typeRole, 500);
+            setTimeout(
+                typeRole,
+                500
+            );
 
             return;
         }
 
-        setTimeout(typeRole, 65);
+        setTimeout(
+            typeRole,
+            65
+        );
     }
 }
 
-setTimeout(typeRole, 500);
-/* Skill Progress Bars */
 
-const skillBars = document.querySelectorAll(".skill-progress-value");
-
-skillBars.forEach((bar) => {
-    const progress = bar.getAttribute("data-progress");
-
-    setTimeout(() => {
-        bar.style.width = progress + "%";
-    }, 300);
-});
+setTimeout(
+    typeRole,
+    500
+);
